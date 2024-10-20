@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topaz Editor</title>
+  <style>
+    * { padding: 0; margin: 0; box-sizing: border-box; }
+  </style>
+</head>
+<body>
+  <div class="navbar"></div>
+  <div style="display: flex;">
+    <div id="src-editor">
+      <pre style="width:50vw; height: 100vh" contenteditable="true">#ruledef {
+  ; perform an addition with u8 at address source1 and source2 and save result in address result
+  add.u8 {source1: u64} {source2: u64} {result: u64} => 0x01 {source1} {source2} {result}
+}
+
+add.u8 1 1 2 ; calculating address 1 + address 1 and saving result at address 2</pre>
+    </div>
+    <div id="output-editor">
+      <pre style="width:50vw; height: 100vh" contenteditable="false"></pre>
+    </div>
+  </div>
+
+  <script>
+    window.executeEveryXMilliSecondsAtMost = ( milliseconds, callback ) => {
+      let run = true;
+      return () => {
+        if ( run ){
+          callback();
+          elapsed = false;
+          setTimeout( () => run = true, milliseconds )
+        }
+      }
+    } 
+  </script>
+  <script type="module">
+    import initTopaz, { run_topaz } from './topaz_web.js'
+
+    window.addEventListener( "load", async () => {
+      await initTopaz();
+      let asmEditor = document.getElementById("src-editor");
+      let codeEditor = document.getElementById("output-editor");
+      codeEditor.innerText = run_topaz( asmEditor.innerText ).reduce( (acc, v) => acc += v.toString(), "" );
+      asmEditor.addEventListener( "keypress", executeEveryXMilliSecondsAtMost( 1000, () => {
+        try {
+          codeEditor.innerText = run_topaz( asmEditor.innerText ).reduce( (acc, v) => acc += v.toString(16), "" );
+        } catch ( e ) {
+          codeEditor.innerText = "Instruction not finished..."
+        }
+      }))
+    })
+  </script>
+</body>
+</html>

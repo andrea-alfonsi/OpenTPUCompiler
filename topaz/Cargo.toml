@@ -1,0 +1,11 @@
+[package]
+name = "topaz"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "topaz"
+path = "src/lib.rs"
+
+[dependencies]
+regex = "1.11.0"

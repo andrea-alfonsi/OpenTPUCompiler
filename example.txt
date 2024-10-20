@@ -1,0 +1,16 @@
+#ruledef 
+{
+  sub.u8 {v1: u16} {v2:u8} {val: u8} => 0x11 {v1} {v2} {val}
+  add {v1: u8} {v2: u8} => 0x12 {v1} {v2}
+}
+
+#ruledef
+{
+  sub.u16 {v1: u16} => 0x23 {v1}
+}
+
+
+add 8 9
+add 10 12
+sub.u8 12 10 1
+sub.u16 18765

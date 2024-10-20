@@ -1,0 +1,6 @@
+#ruledef 
+{
+  load.u8  {length: u8} {from: u64} {to: u32} => 0x04 0x01 {length} {from} {to}
+  read.u8  {length: u8} {from: u64} {to: u32} => 0x05 0x01 {length} {from} {to}
+  write.u8 {length: u8} {from: u32} {to: u64} => 0x06 0x01 {length} {to} {from}
+}

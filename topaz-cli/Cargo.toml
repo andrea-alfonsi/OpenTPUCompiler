@@ -1,0 +1,8 @@
+[package]
+name = "topaz-cli"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+topaz = { path = "../topaz" }
+clap = { version = "4.5.20", features = ["derive"] }
