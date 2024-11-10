@@ -1,0 +1,18 @@
+%%
+0[xX][0-9a-fA-F]+    "HEX"
+[0-9]+               "INT"
+noop                 "NOOP"
+halt                 "HALT"
+write                "WRITE"
+set                  "SET"
+read                 "READ"
+load                 "LOAD"
+get                  "GET"
+sync                 "SYNC"
+mac                  "MAC"
+activate             "ACTIVATE"
+relu                 "RELU"
+softwmax             "SOFTMAX"
+\.                   "DOT"
+;.*                  "COMMENT"
+[\t ]+               ;

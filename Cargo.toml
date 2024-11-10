@@ -1,9 +1,5 @@
 [workspace]
 resolver = "2"
 members = [
-  "topaz", 
-  "topaz-cli"
-]
-exclude = [
-  "topaz-web"
+  "opentpu"
 ]

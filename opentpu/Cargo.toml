@@ -1,0 +1,21 @@
+[package]
+name = "opentpu-assembler"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "cli"
+path = "src/cli.rs"
+
+[build-dependencies]
+cfgrammar = "0.13"
+lrlex = "0.13"
+lrpar = "0.13"
+
+[dependencies]
+cfgrammar = "0.13"
+clap = { version = "4.5.20", features = ["derive"] }
+log = "0.4.22"
+log4rs = "1.3.0"
+lrlex = "0.13"
+lrpar = "0.13"
